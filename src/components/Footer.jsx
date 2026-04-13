@@ -28,10 +28,9 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">AP</span>
+              <div className="w-65 h-20 rounded-lg flex items-center justify-center">
+                <img src="assets/logo.png" alt="AutoPool Logo" />
               </div>
-              <span className="font-bold text-white text-lg">AutoPool</span>
             </Link>
             <p className="text-sm leading-relaxed text-gray-400">
               Platform terpercaya untuk jual beli mobil bekas berkualitas dengan
