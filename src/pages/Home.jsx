@@ -185,7 +185,7 @@ export default function Home() {
         <section 
           className="relative pt-28 pb-24 bg-gray-900 overflow-hidden min-h-[88vh] flex items-center"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80')",
+            backgroundImage: "url('assets/hero.jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat"
@@ -209,7 +209,7 @@ export default function Home() {
                 Temukan{" "}
                 <span className="relative inline-block">
                   <span className="relative z-10 text-blue-400">Mobil Impian</span>
-                  <span className="absolute bottom-1.5 left-0 right-0 h-3 bg-blue-600/30 rounded-full -z-0" />
+                  <span className="absolute bottom-1.5 left-0 right-0 h-3 rounded-full" />
                 </span>
                 <br className="hidden sm:block" />{" "}
                 Anda Hari Ini
@@ -218,7 +218,7 @@ export default function Home() {
 
             {heroLoaded && (
               <p className="hero-animate-3 text-gray-200 text-lg max-w-lg mx-auto mb-10 leading-relaxed drop-shadow-md">
-                Koleksi terlengkap mobil bekas berkualitas premium — harga terbaik, garansi resmi, dan proses yang 100% transparan.
+                Koleksi terlengkap mobil bekas berkualitas premium harga terbaik, garansi resmi, dan proses yang 100% transparan.
               </p>
             )}
 
