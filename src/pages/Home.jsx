@@ -190,11 +190,6 @@ export default function Home() {
           <div className="absolute inset-0 opacity-[0.022] pointer-events-none"
             style={{ backgroundImage: "radial-gradient(#2563eb 1px, transparent 1px)", backgroundSize: "30px 30px" }} />
 
-          {/* Floating decorations */}
-          <div className="absolute right-16 top-28 text-5xl animate-float hidden xl:block opacity-[0.18] select-none">🏎️</div>
-          <div className="absolute left-14 bottom-20 text-3xl animate-float-slow hidden xl:block opacity-[0.14] select-none">🚙</div>
-          <div className="absolute right-32 bottom-32 text-2xl animate-float hidden xl:block opacity-[0.12] select-none" style={{ animationDelay: "2s" }}>✨</div>
-
           <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             {/* Badge */}
             {heroLoaded && (
