@@ -21,12 +21,9 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">AP</span>
+            <div className="w-45 h-45 rounded-lg flex items-center justify-center">
+              <img src="assets/logo.png" alt="AutoPool Logo" />
             </div>
-            <span className="font-bold text-gray-900 text-lg tracking-tight">
-              AutoPool
-            </span>
           </Link>
 
           {/* Desktop Nav */}
