@@ -182,29 +182,34 @@ export default function Home() {
       <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }} className="overflow-x-hidden">
 
         {/* ════ HERO ════════════════════════════════════════════════════════ */}
-        <section className="relative pt-28 pb-24 bg-white overflow-hidden min-h-[88vh] flex items-center">
-          {/* Soft blobs */}
-          <div className="absolute w-[500px] h-[500px] rounded-full bg-blue-500 opacity-[0.07] blur-[90px] -top-24 -right-24 pointer-events-none" />
-          <div className="absolute w-[360px] h-[360px] rounded-full bg-indigo-400 opacity-[0.07] blur-[80px] bottom-0 -left-20 pointer-events-none" />
-          {/* Dot grid */}
-          <div className="absolute inset-0 opacity-[0.022] pointer-events-none"
-            style={{ backgroundImage: "radial-gradient(#2563eb 1px, transparent 1px)", backgroundSize: "30px 30px" }} />
+        <section 
+          className="relative pt-28 pb-24 bg-gray-900 overflow-hidden min-h-[88vh] flex items-center"
+          style={{
+            backgroundImage: "url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat"
+          }}
+        >
+          {/* Overlay Gelap */}
+          <div className="absolute inset-0 bg-black/60 z-0" />
 
-          <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          {/* Konten Hero */}
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             {/* Badge */}
             {heroLoaded && (
-              <div className="hero-animate-1 inline-flex items-center gap-2 bg-blue-50 border border-blue-100 text-blue-700 text-xs font-bold px-4 py-1.5 rounded-full mb-6">
-                <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse" />
+              <div className="hero-animate-1 inline-flex items-center gap-2 bg-blue-600/20 border border-blue-400/30 text-blue-200 text-xs font-bold px-4 py-1.5 rounded-full mb-6 backdrop-blur-sm">
+                <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
                 Platform Jual Beli Mobil Bekas Terpercaya #1 Indonesia
               </div>
             )}
 
             {heroLoaded && (
-              <h1 className="hero-animate-2 text-5xl sm:text-6xl lg:text-[4.2rem] font-bold text-gray-900 leading-[1.1] mb-6 tracking-tight">
+              <h1 className="hero-animate-2 text-5xl sm:text-6xl lg:text-[4.2rem] font-bold text-white leading-[1.1] mb-6 tracking-tight drop-shadow-lg">
                 Temukan{" "}
                 <span className="relative inline-block">
-                  <span className="relative z-10 text-blue-600">Mobil Impian</span>
-                  <span className="absolute bottom-1.5 left-0 right-0 h-3 bg-blue-100 rounded-full -z-0 opacity-70" />
+                  <span className="relative z-10 text-blue-400">Mobil Impian</span>
+                  <span className="absolute bottom-1.5 left-0 right-0 h-3 bg-blue-600/30 rounded-full -z-0" />
                 </span>
                 <br className="hidden sm:block" />{" "}
                 Anda Hari Ini
@@ -212,17 +217,17 @@ export default function Home() {
             )}
 
             {heroLoaded && (
-              <p className="hero-animate-3 text-gray-500 text-lg max-w-lg mx-auto mb-10 leading-relaxed">
+              <p className="hero-animate-3 text-gray-200 text-lg max-w-lg mx-auto mb-10 leading-relaxed drop-shadow-md">
                 Koleksi terlengkap mobil bekas berkualitas premium — harga terbaik, garansi resmi, dan proses yang 100% transparan.
               </p>
             )}
 
             {/* Search */}
             {heroLoaded && (
-              <div className="hero-animate-4 search-wrap max-w-3xl mx-auto bg-white rounded-2xl shadow-lg border border-gray-100 p-3 flex flex-col sm:flex-row gap-3 transition-all duration-300">
+              <div className="hero-animate-4 search-wrap max-w-3xl mx-auto bg-white rounded-2xl shadow-xl border border-gray-100 p-3 flex flex-col sm:flex-row gap-3 transition-all duration-300">
                 <input
                   type="text"
-                  placeholder="🔍  Cari mobil berdasarkan merk..."
+                  placeholder="🔍  Cari mobil berdasarkan merk..."
                   className="flex-1 px-4 py-2.5 text-sm text-gray-700 placeholder-gray-400 outline-none rounded-xl border border-gray-100 focus:border-blue-300 transition-colors"
                 />
                 <select className="px-4 py-2.5 text-sm text-gray-600 outline-none rounded-xl border border-gray-100 bg-white hover:border-blue-200 transition-colors cursor-pointer">
@@ -246,9 +251,9 @@ export default function Home() {
             {/* Brand pills */}
             {heroLoaded && (
               <div className="hero-animate-5 flex flex-wrap items-center justify-center gap-2 mt-7">
-                <span className="text-xs text-gray-400 mr-1">Populer:</span>
+                <span className="text-xs text-gray-300 mr-1 drop-shadow-sm">Populer:</span>
                 {BRANDS.map(b => (
-                  <span key={b} className="brand-pill text-xs font-semibold text-gray-500 bg-gray-50 border border-gray-100 px-3 py-1 rounded-full">
+                  <span key={b} className="brand-pill text-xs font-semibold text-gray-700 bg-gray-50/90 border border-gray-100/20 px-3 py-1 rounded-full backdrop-blur-sm">
                     {b}
                   </span>
                 ))}
@@ -409,7 +414,7 @@ export default function Home() {
               </Link>
               <Link to="/kontak"
                 className="cta-btn-secondary border-2 border-white/40 text-white font-bold text-sm px-8 py-4 rounded-xl flex items-center gap-2 justify-center">
-                📞 Hubungi Kami
+                Hubungi Kami
               </Link>
             </div>
             <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
