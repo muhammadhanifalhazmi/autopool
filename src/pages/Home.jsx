@@ -94,22 +94,17 @@ function AnimatedSection({ children, className = "", delay = 0 }) {
   );
 }
 
-function StatCard({ stat, inView, index }) {
+function FloatingStatCard({ stat, inView }) {
   const count = useCounter(stat.value, inView);
   return (
-    <div className="text-center group cursor-default" style={{
-      opacity: inView ? 1 : 0,
-      transform: inView ? "translateY(0)" : "translateY(20px)",
-      transition: `opacity 0.6s ease ${index * 120}ms, transform 0.6s ease ${index * 120}ms`,
-    }}>
-      <div className="w-14 h-14 bg-white/15 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-3 group-hover:bg-white/25 group-hover:scale-110 transition-all duration-300">
+    <div className="text-center group cursor-default">
+      <div className="text-3xl mb-2 group-hover:scale-110 transition-transform duration-300">
         {stat.icon}
       </div>
-      <div className="text-3xl font-bold text-white mb-1 tabular-nums">
+      <div className="text-2xl md:text-3xl font-bold text-white mb-1 tabular-nums">
         {count}{stat.suffix}
       </div>
-      <div className="font-semibold text-blue-100 text-sm mb-0.5">{stat.label}</div>
-      <div className="text-xs text-blue-200/70">{stat.sub}</div>
+      <div className="font-semibold text-blue-100 text-[10px] md:text-xs uppercase tracking-widest">{stat.label}</div>
     </div>
   );
 }
@@ -133,17 +128,17 @@ export default function Home() {
           from { opacity: 0; transform: translateY(24px); }
           to   { opacity: 1; transform: translateY(0); }
         }
-        @keyframes float {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50%       { transform: translateY(-12px) rotate(3deg); }
-        }
         .hero-animate-1 { animation: fadeSlideUp 0.65s ease 0.05s both; }
         .hero-animate-2 { animation: fadeSlideUp 0.65s ease 0.18s both; }
         .hero-animate-3 { animation: fadeSlideUp 0.65s ease 0.32s both; }
         .hero-animate-4 { animation: fadeSlideUp 0.65s ease 0.46s both; }
         .hero-animate-5 { animation: fadeSlideUp 0.65s ease 0.58s both; }
-        .animate-float  { animation: float 4s ease-in-out infinite; }
-        .animate-float-slow { animation: float 6s ease-in-out 1.5s infinite; }
+
+        .floating-stats-container {
+          margin-top: -60px;
+          position: relative;
+          z-index: 20;
+        }
 
         .card-lift {
           transition: transform 0.28s cubic-bezier(.34,1.56,.64,1), box-shadow 0.28s ease;
@@ -159,7 +154,6 @@ export default function Home() {
 
         .step-card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
         .step-card:hover { transform: translateY(-5px); box-shadow: 0 16px 32px -8px rgba(37,99,235,0.14); }
-        .step-card:hover .step-icon-box { transform: scale(1.1); box-shadow: 0 10px 24px -4px rgba(37,99,235,0.38); }
         .step-icon-box { transition: transform 0.25s ease, box-shadow 0.25s ease; }
 
         .testi-card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
@@ -170,109 +164,76 @@ export default function Home() {
         }
         .brand-pill { transition: all 0.18s ease; cursor: pointer; }
         .brand-pill:hover { background: #eff6ff; color: #2563eb; border-color: #bfdbfe; transform: translateY(-2px); }
-
-        .cta-btn-primary { transition: transform 0.18s ease, box-shadow 0.18s ease; }
-        .cta-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -4px rgba(255,255,255,0.25); }
-        .cta-btn-primary:active { transform: scale(0.97); }
-        .cta-btn-secondary { transition: all 0.18s ease; }
-        .cta-btn-secondary:hover { background: rgba(255,255,255,0.12); }
-        .cta-btn-secondary:active { transform: scale(0.97); }
       `}</style>
 
-      <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }} className="overflow-x-hidden">
+      <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }} className="overflow-x-hidden bg-white">
 
-        {/* ════ HERO ════════════════════════════════════════════════════════ */}
+        {/* ════ HERO (Expanded / Full Screen) ═══════════════════════════════ */}
         <section 
-          className="relative pt-28 pb-24 bg-gray-900 overflow-hidden min-h-[88vh] flex items-center"
+          className="relative min-h-screen flex items-center pt-28 pb-40 bg-gray-900 overflow-hidden"
           style={{
             backgroundImage: "url('assets/hero.jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
-            backgroundRepeat: "no-repeat"
           }}
         >
-          {/* Overlay Gelap */}
           <div className="absolute inset-0 bg-black/60 z-0" />
 
-          {/* Konten Hero */}
           <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            {/* Badge */}
             {heroLoaded && (
-              <div className="hero-animate-1 inline-flex items-center gap-2 bg-blue-600/20 border border-blue-400/30 text-blue-200 text-xs font-bold px-4 py-1.5 rounded-full mb-6 backdrop-blur-sm">
-                <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
-                Platform Jual Beli Mobil Bekas Terpercaya #1 Indonesia
-              </div>
-            )}
+              <>
+                <div className="hero-animate-1 inline-flex items-center gap-2 bg-blue-600/20 border border-blue-400/30 text-blue-200 text-xs font-bold px-4 py-1.5 rounded-full mb-8 backdrop-blur-sm">
+                  <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse" />
+                  Platform Jual Beli Mobil Bekas Terpercaya #1 Indonesia
+                </div>
 
-            {heroLoaded && (
-              <h1 className="hero-animate-2 text-5xl sm:text-6xl lg:text-[4.2rem] font-bold text-white leading-[1.1] mb-6 tracking-tight drop-shadow-lg">
-                Temukan{" "}
-                <span className="relative inline-block">
-                  <span className="relative z-10 text-blue-400">Mobil Impian</span>
-                  <span className="absolute bottom-1.5 left-0 right-0 h-3 rounded-full" />
-                </span>
-                <br className="hidden sm:block" />{" "}
-                Anda Hari Ini
-              </h1>
-            )}
+                <h1 className="hero-animate-2 text-5xl sm:text-7xl lg:text-[5.5rem] font-bold text-white leading-[1.1] mb-8 tracking-tight drop-shadow-lg">
+                  Temukan <span className="text-blue-400">Mobil Impian</span> <br className="hidden md:block" /> Anda Hari Ini
+                </h1>
 
-            {heroLoaded && (
-              <p className="hero-animate-3 text-gray-200 text-lg max-w-lg mx-auto mb-10 leading-relaxed drop-shadow-md">
-                Koleksi terlengkap mobil bekas berkualitas premium harga terbaik, garansi resmi, dan proses yang 100% transparan.
-              </p>
-            )}
+                <p className="hero-animate-3 text-gray-200 text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed drop-shadow-md opacity-90">
+                  Koleksi terlengkap mobil bekas berkualitas premium harga terbaik, garansi resmi, dan proses yang 100% transparan.
+                </p>
 
-            {/* Search */}
-            {heroLoaded && (
-              <div className="hero-animate-4 search-wrap max-w-3xl mx-auto bg-white rounded-2xl shadow-xl border border-gray-100 p-3 flex flex-col sm:flex-row gap-3 transition-all duration-300">
-                <input
-                  type="text"
-                  placeholder="🔍  Cari mobil berdasarkan merk..."
-                  className="flex-1 px-4 py-2.5 text-sm text-gray-700 placeholder-gray-400 outline-none rounded-xl border border-gray-100 focus:border-blue-300 transition-colors"
-                />
-                <select className="px-4 py-2.5 text-sm text-gray-600 outline-none rounded-xl border border-gray-100 bg-white hover:border-blue-200 transition-colors cursor-pointer">
-                  <option>Semua Merk</option>
-                  {BRANDS.map(b => <option key={b}>{b}</option>)}
-                </select>
-                <select className="px-4 py-2.5 text-sm text-gray-600 outline-none rounded-xl border border-gray-100 bg-white hover:border-blue-200 transition-colors cursor-pointer">
-                  <option>Range Harga</option>
-                  <option>{"< 300 Juta"}</option>
-                  <option>300 – 700 Juta</option>
-                  <option>700 Juta – 2 M</option>
-                  <option>{"> 2 Miliar"}</option>
-                </select>
-                <Link to="/katalog"
-                  className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm px-6 py-2.5 rounded-xl flex items-center gap-2 justify-center whitespace-nowrap shadow-md shadow-blue-200 transition-colors active:scale-95">
-                  Cari Sekarang
-                </Link>
-              </div>
-            )}
-
-            {/* Brand pills */}
-            {heroLoaded && (
-              <div className="hero-animate-5 flex flex-wrap items-center justify-center gap-2 mt-7">
-                <span className="text-xs text-gray-300 mr-1 drop-shadow-sm">Populer:</span>
-                {BRANDS.map(b => (
-                  <span key={b} className="brand-pill text-xs font-semibold text-gray-700 bg-gray-50/90 border border-gray-100/20 px-3 py-1 rounded-full backdrop-blur-sm">
-                    {b}
-                  </span>
-                ))}
-              </div>
+                <div className="hero-animate-4 search-wrap max-w-4xl mx-auto bg-white rounded-[2rem] shadow-2xl border border-gray-100 p-3 flex flex-col sm:flex-row gap-3 transition-all duration-300">
+                  <input
+                    type="text"
+                    placeholder="Cari mobil berdasarkan merek, model, atau tahun..."
+                    className="flex-1 px-6 py-3 text-sm text-gray-700 outline-none rounded-2xl"
+                  />
+                  <select className="px-4 py-3 text-sm text-gray-600 outline-none rounded-xl border border-gray-50 bg-gray-50 cursor-pointer">
+                    <option>Semua Brand</option>
+                    {BRANDS.map(b => <option key={b}>{b}</option>)}
+                  </select>
+                  <Link to="/katalog"
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm px-10 py-4 rounded-2xl flex items-center gap-2 justify-center shadow-lg shadow-blue-200 transition-all active:scale-95">
+                    Cari Sekarang
+                  </Link>
+                </div>
+              </>
             )}
           </div>
         </section>
 
-        {/* ════ STATS ═══════════════════════════════════════════════════════ */}
-        <section className="bg-gradient-to-r from-blue-600 to-blue-700 py-14">
-          <div ref={statsRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-              {STATS.map((s, i) => <StatCard key={s.label} stat={s} inView={statsInView} index={i} />)}
+        {/* ════ STATS (Floating Card / Rounded) ═════════════════════════════ */}
+        <div className="max-w-6xl mx-auto px-4 floating-stats-container">
+          <div 
+            ref={statsRef}
+            className="bg-blue-600 rounded-[3rem] shadow-2xl shadow-blue-900/20 p-10 md:p-14 relative overflow-hidden"
+          >
+            {/* Soft decorative background in card */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16" />
+            
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
+              {STATS.map((s, i) => (
+                <FloatingStatCard key={s.label} stat={s} inView={statsInView} index={i} />
+              ))}
             </div>
           </div>
-        </section>
+        </div>
 
         {/* ════ KATALOG PREVIEW ═════════════════════════════════════════════ */}
-        <section className="py-20 bg-gray-50">
+        <section className="py-24 bg-gray-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <AnimatedSection className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
               <div>
@@ -394,55 +355,13 @@ export default function Home() {
         <section className="py-20 relative overflow-hidden bg-blue-600">
           <div className="absolute inset-0 opacity-[0.07]"
             style={{ backgroundImage: "radial-gradient(circle, #fff 1px, transparent 1px)", backgroundSize: "26px 26px" }} />
-          <div className="absolute -top-24 -right-24 w-80 h-80 bg-blue-500 rounded-full opacity-25 blur-3xl pointer-events-none" />
-          <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-indigo-600 rounded-full opacity-25 blur-3xl pointer-events-none" />
-
           <AnimatedSection className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white text-xs font-bold px-4 py-1.5 rounded-full mb-6">
-              🎯 Konsultasi 100% Gratis
-            </div>
-            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-5 leading-tight">
-              Siap Menemukan<br />Mobil Impian Anda?
-            </h2>
-            <p className="text-blue-100 text-base mb-10 max-w-lg mx-auto leading-relaxed">
-              Konsultasi gratis dengan ahli kami untuk mendapatkan rekomendasi mobil terbaik sesuai kebutuhan dan budget Anda.
-            </p>
+            <h2 className="text-4xl font-bold text-white mb-5 leading-tight">Siap Menemukan Mobil Impian?</h2>
+            <p className="text-blue-100 text-base mb-10 max-w-lg mx-auto">Konsultasi gratis dengan ahli kami untuk mendapatkan rekomendasi terbaik sesuai budget Anda.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/katalog"
-                className="cta-btn-primary bg-white text-blue-600 font-bold text-sm px-8 py-4 rounded-xl shadow-xl shadow-blue-900/20 flex items-center gap-2 justify-center">
-                Jelajahi Katalog →
-              </Link>
-              <Link to="/kontak"
-                className="cta-btn-secondary border-2 border-white/40 text-white font-bold text-sm px-8 py-4 rounded-xl flex items-center gap-2 justify-center">
-                Hubungi Kami
-              </Link>
+              <Link to="/katalog" className="bg-white text-blue-600 font-bold px-8 py-4 rounded-xl shadow-xl transition-all hover:scale-105 active:scale-95">Jelajahi Katalog →</Link>
+              <Link to="/kontak" className="border-2 border-white/40 text-white font-bold px-8 py-4 rounded-xl transition-all hover:bg-white/10">Hubungi Kami</Link>
             </div>
-            <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
-              {BRANDS.map(b => (
-                <span key={b} className="text-white/50 text-xs font-semibold bg-white/5 border border-white/10 px-3 py-1 rounded-full">
-                  {b}
-                </span>
-              ))}
-            </div>
-          </AnimatedSection>
-        </section>
-
-        {/* ════ NEWSLETTER ══════════════════════════════════════════════════ */}
-        <section className="py-16 bg-white">
-          <AnimatedSection className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="text-4xl mb-4">✉️</div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">Dapatkan Penawaran Terbaik</h3>
-            <p className="text-gray-500 text-sm mb-8 max-w-sm mx-auto">
-              Update mobil baru, promo eksklusif, dan tips otomotif langsung ke inbox Anda.
-            </p>
-            <div className="flex gap-3 max-w-md mx-auto">
-              <input type="email" placeholder="Masukkan email Anda"
-                className="flex-1 px-4 py-3 text-sm border border-gray-200 rounded-xl outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-50 transition-all" />
-              <button className="bg-blue-600 hover:bg-blue-700 active:scale-95 transition-all text-white font-bold text-sm px-6 py-3 rounded-xl whitespace-nowrap shadow-md shadow-blue-200">
-                Subscribe
-              </button>
-            </div>
-            <p className="text-xs text-gray-400 mt-3">Tidak ada spam. Bisa unsubscribe kapan saja.</p>
           </AnimatedSection>
         </section>
 
