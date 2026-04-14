@@ -12,14 +12,14 @@ const STATS = [
 ];
 
 const CARS = [
-  { id: 1, name: "Mercedes-Benz E-Class", price: "Rp 950.000.000", year: 2022, mileage: "15.000 km", fuel: "Bensin", trans: "Automatic", badge: null, color: "#1a1a2e" },
-  { id: 2, name: "Toyota Fortuner VRZ", price: "Rp 465.000.000", year: 2023, mileage: "8.000 km", fuel: "Diesel", trans: "Automatic", badge: "Terlaris", color: "#2d4a22" },
-  { id: 3, name: "Porsche 911 Carrera", price: "Rp 2.750.000.000", year: 2021, mileage: "12.000 km", fuel: "Bensin", trans: "Automatic", badge: "Premium", color: "#c0392b" },
-  { id: 4, name: "BMW 3 Series 330i", price: "Rp 725.000.000", year: 2022, mileage: "10.000 km", fuel: "Bensin", trans: "Automatic", badge: null, color: "#1c3a5e" },
-  { id: 5, name: "Mercedes-Benz GLE 450", price: "Rp 1.450.000.000", year: 2022, mileage: "7.000 km", fuel: "Bensin", trans: "Automatic", badge: null, color: "#2c3e50" },
-  { id: 6, name: "Toyota RAV4 Hybrid", price: "Rp 565.000.000", year: 2022, mileage: "12.000 km", fuel: "Hybrid", trans: "Automatic", badge: "Eco", color: "#1a3a2a" },
-  { id: 7, name: "Honda Civic Turbo", price: "Rp 385.000.000", year: 2023, mileage: "5.000 km", fuel: "Bensin", trans: "CVT", badge: null, color: "#c0392b" },
-  { id: 8, name: "Audi A4 2.0 TFSI", price: "Rp 675.000.000", year: 2022, mileage: "14.000 km", fuel: "Bensin", trans: "Automatic", badge: null, color: "#1a1a1a" },
+  { id: 1, name: "Mercedes-Benz E-Class", price: "Rp 950.000.000", year: 2022, mileage: "15.000 km", fuel: "Bensin", trans: "Automatic", badge: null, color: "#1a1a2e", Image: "/assets/mercedes-e-class.jpg" },
+  { id: 2, name: "Toyota Fortuner VRZ", price: "Rp 465.000.000", year: 2023, mileage: "8.000 km", fuel: "Diesel", trans: "Automatic", badge: "Terlaris", color: "#2d4a22", Image: "assets/toyota-fortuner.jpg" },
+  { id: 3, name: "Porsche 911 Carrera", price: "Rp 2.750.000.000", year: 2021, mileage: "12.000 km", fuel: "Bensin", trans: "Automatic", badge: "Premium", color: "#c0392b", Image: "assets/porsche-911.jpg" },
+  { id: 4, name: "BMW 3 Series 330i", price: "Rp 725.000.000", year: 2022, mileage: "10.000 km", fuel: "Bensin", trans: "Automatic", badge: null, color: "#1c3a5e", Image: "assets/bmw-3-series.jpg" },
+  { id: 5, name: "Mercedes-Benz GLE 450", price: "Rp 1.450.000.000", year: 2022, mileage: "7.000 km", fuel: "Bensin", trans: "Automatic", badge: null, color: "#2c3e50", Image: "assets/mercedes-gle.jpg" },
+  { id: 6, name: "Toyota RAV4 Hybrid", price: "Rp 565.000.000", year: 2022, mileage: "12.000 km", fuel: "Hybrid", trans: "Automatic", badge: "Eco", color: "#1a3a2a", Image: "assets/toyota-rav4.jpg" },
+  { id: 7, name: "Honda Civic Turbo", price: "Rp 385.000.000", year: 2023, mileage: "5.000 km", fuel: "Bensin", trans: "CVT", badge: null, color: "#c0392b", Image: "assets/honda-civic.jpg" },
+  { id: 8, name: "Audi A4 2.0 TFSI", price: "Rp 675.000.000", year: 2022, mileage: "14.000 km", fuel: "Bensin", trans: "Automatic", badge: null, color: "#1a1a1a", Image: "assets/audi-a4.jpg" },
 ];
 
 const FEATURES = [
@@ -135,7 +135,7 @@ export default function Home() {
         .hero-animate-5 { animation: fadeSlideUp 0.65s ease 0.58s both; }
 
         .floating-stats-container {
-          margin-top: -60px;
+          margin-top: -65px; /* Mengangkat card agar melayang di antara section */
           position: relative;
           z-index: 20;
         }
@@ -168,11 +168,11 @@ export default function Home() {
 
       <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }} className="overflow-x-hidden bg-white">
 
-        {/* ════ HERO (Expanded / Full Screen) ═══════════════════════════════ */}
+        {/* ════ HERO (Full Screen & Local Assets) ═══════════════════════════ */}
         <section 
           className="relative min-h-screen flex items-center pt-28 pb-40 bg-gray-900 overflow-hidden"
           style={{
-            backgroundImage: "url('assets/hero.jpg')",
+            backgroundImage: "url('/assets/hero.jpg')", /* Mengarah ke public/assets/hero.jpg */
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -215,18 +215,18 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ════ STATS (Floating Card / Rounded) ═════════════════════════════ */}
+        {/* ════ STATS (Floating Card / Melayang) ═════════════════════════════ */}
         <div className="max-w-6xl mx-auto px-4 floating-stats-container">
           <div 
             ref={statsRef}
             className="bg-blue-600 rounded-[3rem] shadow-2xl shadow-blue-900/20 p-10 md:p-14 relative overflow-hidden"
           >
-            {/* Soft decorative background in card */}
+            {/* Dekorasi halus di dalam card */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16" />
             
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
-              {STATS.map((s, i) => (
-                <FloatingStatCard key={s.label} stat={s} inView={statsInView} index={i} />
+              {STATS.map((s) => (
+                <FloatingStatCard key={s.label} stat={s} inView={statsInView} />
               ))}
             </div>
           </div>
@@ -336,7 +336,7 @@ export default function Home() {
                     </div>
                     <p className="text-sm text-gray-600 leading-relaxed mb-5">{t.text}</p>
                     <div className="flex items-center gap-3 pt-4 border-t border-gray-50">
-                      <div className="w-10 h-10 rounded-full bg-linear-to-br from-blue-400 to-blue-600 flex items-center justify-center font-bold text-white text-sm shadow-md">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center font-bold text-white text-sm shadow-md">
                         {t.name.charAt(0)}
                       </div>
                       <div>

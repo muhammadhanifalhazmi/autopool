@@ -7,7 +7,7 @@ export default function CarCard({ car }) {
       <div
         className="relative h-44 overflow-hidden"
         style={{
-          background: `linear-gradient(135deg, ${car.color} 0%, ${car.color}cc 100%)`,
+          
         }}
       >
         {car.badge && (
@@ -24,7 +24,7 @@ export default function CarCard({ car }) {
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
             <span className="text-6xl opacity-60 group-hover:scale-110 transition-transform duration-300">
-              🚗
+              <img src="/assets/mercedes-e-class.jpg" alt="" />
             </span>
           </div>
         )}
