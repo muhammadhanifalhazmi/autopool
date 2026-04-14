@@ -26,10 +26,9 @@ export default function Login() {
           {/* Logo */}
           <div className="text-center mb-8">
             <Link to="/" className="inline-flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center">
-                <span className="text-white font-bold">AP</span>
+              <div className="w-70 h-30 rounded-xl flex items-center justify-center">
+                 <img src="assets/logo.png" alt="AutoPool Logo" />
               </div>
-              <span className="font-bold text-gray-900 text-xl">AutoPool</span>
             </Link>
             <h1 className="text-2xl font-bold text-gray-900 mt-2">Selamat Datang</h1>
             <p className="text-gray-500 text-sm mt-1">Masuk ke akun AutoPool Anda</p>
