@@ -43,10 +43,18 @@ export default function DetailMobil() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Image */}
           <div
-            className="rounded-2xl overflow-hidden h-72 lg:h-96 flex items-center justify-center"
+            className="relative rounded-2xl overflow-hidden h-72 lg:h-96 flex items-center justify-center bg-gray-200"
             style={{ background: `linear-gradient(135deg, ${car.color} 0%, ${car.color}cc 100%)` }}
           >
-            <span className="text-8xl opacity-60">🚗</span>
+            {car.image ? (
+              <img 
+                src={car.image} 
+                alt={car.name} 
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <span className="text-8xl opacity-60">🚗</span>
+            )}
           </div>
 
           {/* Info */}
