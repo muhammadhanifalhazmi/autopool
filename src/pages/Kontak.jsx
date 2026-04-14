@@ -55,14 +55,20 @@ export default function Kontak() {
             </div>
 
             {/* Map placeholder */}
-            <div className="bg-blue-50 rounded-2xl h-48 flex items-center justify-center border border-blue-100">
-              <div className="text-center text-gray-400">
-                <div className="text-4xl mb-2">🗺️</div>
-                <p className="text-sm font-medium">Peta Lokasi</p>
-                <p className="text-xs">Jl. Sudirman No. 42, Jakarta Selatan</p>
-              </div>
+            <div className="bg-white rounded-2xl overflow-hidden h-64 border border-gray-100 shadow-sm mt-6">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.273648600106!2d106.81845457586526!3d-6.22760219376063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e4a1738727%3A0xec50339d3714b7e!2sSudirman%20Central%20Business%20District!5e0!3m2!1sid!2sid!4v1710000000000!5m2!1sid!2sid"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Lokasi Penjual"
+              ></iframe>
             </div>
           </div>
+          
 
           {/* Form */}
           <div>
@@ -121,7 +127,7 @@ export default function Kontak() {
                 </div>
                 <button onClick={handleSubmit}
                   className="w-full bg-blue-600 hover:bg-blue-700 transition-colors text-white font-bold py-3 rounded-xl text-sm">
-                  Kirim Pesan 📨
+                  Kirim Pesan
                 </button>
               </div>
             )}
