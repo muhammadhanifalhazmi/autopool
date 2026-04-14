@@ -195,7 +195,7 @@ export default function Home() {
                   Koleksi terlengkap mobil bekas berkualitas premium harga terbaik, garansi resmi, dan proses yang 100% transparan.
                 </p>
 
-                <div className="hero-animate-4 search-wrap max-w-4xl mx-auto bg-white rounded-[2rem] shadow-2xl border border-gray-100 p-3 flex flex-col sm:flex-row gap-3 transition-all duration-300">
+                <div className="hero-animate-4 search-wrap max-w-4xl mx-auto bg-white rounded-4xl shadow-2xl border border-gray-100 p-3 flex flex-col sm:flex-row gap-3 transition-all duration-300">
                   <input
                     type="text"
                     placeholder="Cari mobil berdasarkan merek, model, atau tahun..."
@@ -336,7 +336,7 @@ export default function Home() {
                     </div>
                     <p className="text-sm text-gray-600 leading-relaxed mb-5">{t.text}</p>
                     <div className="flex items-center gap-3 pt-4 border-t border-gray-50">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center font-bold text-white text-sm shadow-md">
+                      <div className="w-10 h-10 rounded-full bg-linear-to-br from-blue-400 to-blue-600 flex items-center justify-center font-bold text-white text-sm shadow-md">
                         {t.name.charAt(0)}
                       </div>
                       <div>
