@@ -44,9 +44,9 @@ export default function DetailMobil() {
           {/* Image */}
           <div
             className="rounded-2xl overflow-hidden h-72 lg:h-96 flex items-center justify-center"
-            style={{  }}
+            style={{ background: `linear-gradient(135deg, ${car.color} 0%, ${car.color}cc 100%)` }}
           >
-            <span className="text-8xl opacity-60"> <img src="/assets/mercedes-e-class.jpg" alt="" /></span>
+            <span className="text-8xl opacity-60">🚗</span>
           </div>
 
           {/* Info */}
